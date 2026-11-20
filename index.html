@@ -62,8 +62,7 @@
 
   /* hero */
   .hero{background:radial-gradient(1200px 600px at 85% 20%,#163a78 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:84px 0 96px;position:relative;overflow:hidden}
-  .hero::before{content:"";position:absolute;left:-120px;top:-40px;width:520px;height:580px;background:url(assets/escudo.png) no-repeat center/contain;opacity:.05;pointer-events:none}
-  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center;position:relative}
   .hero .who{font-size:.95rem;color:var(--gold-light);font-weight:600;margin-bottom:18px;font-family:Montserrat,sans-serif}
   .hero h1{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:800;margin-bottom:20px}
   .hero h1 span{color:var(--gold-light)}
@@ -130,7 +129,7 @@
   .photo{position:relative;max-width:380px;justify-self:center}
   .photo img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;width:100%;box-shadow:0 20px 50px rgba(10,31,68,.25)}
   .photo::after{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--gold);border-radius:24px;z-index:-1}
-  .photo .seal{position:absolute;right:-18px;bottom:24px;background:var(--navy);border:1px solid var(--gold);border-radius:14px;padding:10px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .photo .seal{position:absolute;right:-18px;bottom:24px;background:var(--navy);border:1px solid var(--gold);border-radius:14px;padding:10px 16px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
   .photo .seal img{width:30px;height:auto;aspect-ratio:auto;box-shadow:none;border-radius:0}
   .photo .seal span{color:#fff;font-size:.8rem;line-height:1.3}
   .photo .seal b{color:var(--gold-light);display:block;font-family:Montserrat,sans-serif}
@@ -159,22 +158,18 @@
 
   /* cta */
   .cta{background:radial-gradient(800px 400px at 50% 0%,#163a78 0%,transparent 70%),var(--navy-deep);color:#fff;text-align:center}
-  .cta img{width:90px;margin:0 auto 22px}
   .cta h2{max-width:720px;margin:0 auto 14px}
   .cta p{color:#c5cee0;margin-bottom:30px}
 
-  footer{background:#040e22;color:#9aa6bf;padding:44px 0;font-size:.92rem;border-top:1px solid var(--line)}
-  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:center}
-  .foot img{height:80px;width:auto}
-  .foot ul{list-style:none;display:grid;gap:6px}
-  .foot a{text-decoration:none}
-  .foot a:hover{color:var(--gold-light)}
-  .foot b{color:#fff}
-
-  /* floating whatsapp */
-  .wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.3);transition:transform .2s ease}
-  .wa-float:hover{transform:scale(1.07)}
-  .wa-float svg{width:32px;height:32px;fill:#fff}
+  footer{background:#040e22;color:#9aa6bf;padding:48px 0 0;font-size:.94rem;border-top:1px solid var(--line)}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:flex-start;padding-bottom:32px}
+  .foot-brand{display:grid;gap:6px}
+  .foot-brand b{font-family:Montserrat,sans-serif;color:var(--gold-light);font-size:1.1rem;margin-bottom:4px}
+  .foot-contact{display:grid;gap:12px}
+  .foot-contact a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#dfe5f1}
+  .foot-contact a:hover{color:var(--gold-light)}
+  .foot-contact svg{width:18px;height:18px;flex:none;color:var(--gold)}
+  .foot-bottom{border-top:1px solid rgba(201,162,74,.15);padding:18px 0 22px;font-size:.82rem;color:#6f7b94}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -202,6 +197,8 @@
     .photo .seal{right:8px}
     .photo::after{inset:10px -8px -10px 10px}
     .nav .btn span{display:none}
+    .foot{flex-direction:column;gap:22px}
+    .foot-bottom{text-align:center}
   }
 </style>
 </head>
@@ -392,19 +389,13 @@
   <div class="wrap about">
     <div class="photo reveal">
       <img src="assets/gabriela.jpg" alt="Gabriela dos Santos, contadora e responsável técnica da GB Perícias">
-      <div class="seal"><img src="assets/escudo.png" alt=""><span><b>CRC SC048414</b>Contadora</span></div>
+      <div class="seal"><span><b>CRC SC048414</b>Contadora</span></div>
     </div>
     <div>
       <span class="tag">Quem calcula</span>
       <h2>Gabriela dos Santos</h2>
       <p>Sou contadora, responsável técnica pela GB Perícias, e moro em Blumenau (SC). Atendo advogados de todo o Brasil de forma online.</p>
-      <p>Trabalho com contabilidade desde 2022:</p>
-      <ul class="timeline">
-        <li><b>Assistente contábil</b> · Cooperativa Central Ailos<small>desde 2025</small></li>
-        <li><b>Analista contábil</b> · Colinear<small>2025</small></li>
-        <li><b>Analista contábil tributária</b> · BDS Assessoria Contábil<small>2023 a 2025</small></li>
-        <li><b>Auxiliar contábil e fiscal</b> · BDS Assessoria Contábil<small>2022 a 2023</small></li>
-      </ul>
+      <p>Tenho mais de 4 anos de experiência na área contábil, em rotinas contábeis, fiscais e tributárias.</p>
       <p>Me especializei em cálculos trabalhistas na Formação Avançada em Cálculos Trabalhistas (FACT), do Instituto Veritas, com a perita Fernanda Araújo.</p>
       <div class="creds">
         <div class="cred"><b>Ciências Contábeis</b><span>Bacharelado · Uniasselvi</span></div>
@@ -434,7 +425,6 @@
 <!-- 8. CHAMADA FINAL -->
 <section class="cta dark">
   <div class="wrap">
-    <img src="assets/escudo.png" alt="">
     <h2>Tem um processo para calcular?</h2>
     <p>Envie pelo WhatsApp e receba o orçamento em até 2 dias.</p>
     <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener">
@@ -449,21 +439,25 @@
 <!-- 9. RODAPÉ -->
 <footer>
   <div class="wrap foot">
-    <img src="assets/logo-gb.png" alt="GB Perícias Trabalhistas">
-    <ul>
-      <li><b>Gabriela dos Santos</b> · Contadora · CRC SC048414</li>
-      <li>Blumenau (SC) · Atendimento online em todo o Brasil</li>
-    </ul>
-    <ul>
-      <li>WhatsApp: <a class="js-wa js-wa-text" href="#" target="_blank" rel="noopener">(47) 9264-1570</a></li>
-      <li>E-mail: <a href="mailto:gbpericias07@gmail.com">gbpericias07@gmail.com</a></li>
-    </ul>
+    <div class="foot-brand">
+      <b>GB Perícias Trabalhistas</b>
+      <span>Gabriela dos Santos · Contadora · CRC SC048414</span>
+      <span>Blumenau (SC) · Atendimento online em todo o Brasil</span>
+    </div>
+    <div class="foot-contact">
+      <a class="js-wa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9 1-3.5-.2-.4C3 15.8 2.5 14 2.5 12.1 2.5 6.8 6.8 2.5 12 2.5c2.6 0 5 1 6.8 2.8 1.8 1.8 2.8 4.2 2.8 6.8 0 5.3-4.3 9.7-9.6 9.7zm8.2-17.9C18 1.7 15.1.5 12 .5 5.6.5.4 5.7.4 12.1c0 2 .5 4 1.6 5.8L.3 23.5l5.8-1.5c1.7.9 3.7 1.4 5.6 1.4 6.4 0 11.6-5.2 11.6-11.6 0-3.1-1.2-6-3.1-8.2z"/></svg>
+        (47) 9264-1570
+      </a>
+      <a href="mailto:gbpericias07@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        gbpericias07@gmail.com
+      </a>
+    </div>
   </div>
+  <div class="wrap foot-bottom">© 2026 GB Perícias Trabalhistas</div>
 </footer>
 
-<a class="wa-float js-wa" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9 1-3.5-.2-.4C3 15.8 2.5 14 2.5 12.1 2.5 6.8 6.8 2.5 12 2.5c2.6 0 5 1 6.8 2.8 1.8 1.8 2.8 4.2 2.8 6.8 0 5.3-4.3 9.7-9.6 9.7zm8.2-17.9C18 1.7 15.1.5 12 .5 5.6.5.4 5.7.4 12.1c0 2 .5 4 1.6 5.8L.3 23.5l5.8-1.5c1.7.9 3.7 1.4 5.6 1.4 6.4 0 11.6-5.2 11.6-11.6 0-3.1-1.2-6-3.1-8.2z"/></svg>
-</a>
 
 <script>
   // Número do WhatsApp: só números, com 55 + DDD. Troque aqui se precisar.
