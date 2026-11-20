@@ -141,9 +141,18 @@
   .timeline b{color:var(--navy)}
   .timeline small{display:block;color:var(--muted);font-size:.85rem}
   .creds{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
-  .cred{background:#fff;border:1px solid var(--ivory-2);border-radius:12px;padding:14px}
-  .cred b{display:block;font-family:Montserrat,sans-serif;color:var(--navy);font-size:.92rem;line-height:1.3}
+  .cred{background:#fff;border:1px solid var(--ivory-2);border-radius:12px;padding:10px 10px 14px;text-align:left;cursor:zoom-in;font:inherit;color:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .cred:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(10,31,68,.12);border-color:var(--gold)}
+  .cred img{width:100%;aspect-ratio:1.38;object-fit:cover;border-radius:8px;margin-bottom:10px;border:1px solid var(--ivory-2)}
+  .cred b{display:block;font-family:Montserrat,sans-serif;color:var(--navy);font-size:.9rem;line-height:1.3}
   .cred span{font-size:.82rem;color:var(--muted)}
+  .creds-hint{font-size:.85rem;color:var(--muted);margin-top:10px}
+  dialog.lightbox{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);width:100%;margin:auto}
+  dialog.lightbox::backdrop{background:rgba(4,14,34,.85)}
+  .lb-inner{position:relative;background:#fff;border-radius:14px;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+  .lb-inner img{width:100%;height:auto;max-height:82vh;object-fit:contain;border-radius:8px}
+  .lb-inner p{font-family:Montserrat,sans-serif;font-weight:600;color:var(--navy);font-size:.95rem;padding:10px 4px 2px}
+  .lb-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:0;background:var(--gold);color:var(--navy-deep);font-size:1.4rem;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.3)}
 
   /* faq */
   .faq{background:#fff}
@@ -202,6 +211,10 @@
     .photo::after{inset:10px -8px -10px 10px}
     .nav .btn span{display:none}
     .foot{flex-direction:column;gap:22px}
+    .cred{display:grid;grid-template-columns:104px 1fr;column-gap:14px;align-items:center;padding:10px}
+    .cred img{grid-row:span 2;margin:0}
+    .cred b{align-self:end}
+    .cred span{align-self:start}
     .foot-bottom{flex-direction:column;align-items:center;text-align:center}
   }
 </style>
@@ -419,10 +432,20 @@
       <p>Tenho mais de 4 anos de experiência na área contábil, em rotinas contábeis, fiscais e tributárias.</p>
       <p>Me especializei em cálculos trabalhistas na Formação Avançada em Cálculos Trabalhistas (FACT), do Instituto Veritas, com a perita Fernanda Araújo.</p>
       <div class="creds">
-        <div class="cred"><b>Ciências Contábeis</b><span>Bacharelado · Uniasselvi</span></div>
-        <div class="cred"><b>PJe-Calc do Básico ao Avançado</b><span>30h · FACT / Veritas</span></div>
-        <div class="cred"><b>Metodologia do Cálculo Trabalhista</b><span>20h · FACT / Veritas</span></div>
+        <button class="cred" type="button" data-full="assets/cert-diploma.jpg" data-title="Diploma de Bacharela em Ciências Contábeis">
+          <img src="assets/cert-diploma-thumb.jpg" alt="Diploma de Ciências Contábeis" loading="lazy">
+          <b>Ciências Contábeis</b><span>Bacharelado · Uniasselvi</span>
+        </button>
+        <button class="cred" type="button" data-full="assets/cert-pjecalc.jpg" data-title="Certificado PJe-Calc do Básico ao Avançado">
+          <img src="assets/cert-pjecalc-thumb.jpg" alt="Certificado PJe-Calc do Básico ao Avançado" loading="lazy">
+          <b>PJe-Calc do Básico ao Avançado</b><span>30h · FACT / Veritas</span>
+        </button>
+        <button class="cred" type="button" data-full="assets/cert-metodologia.jpg" data-title="Certificado Metodologia do Cálculo Trabalhista">
+          <img src="assets/cert-metodologia-thumb.jpg" alt="Certificado Metodologia do Cálculo Trabalhista" loading="lazy">
+          <b>Metodologia do Cálculo Trabalhista</b><span>20h · FACT / Veritas</span>
+        </button>
       </div>
+      <p class="creds-hint">Clique em um certificado para ver em tamanho maior.</p>
     </div>
   </div>
 </section>
@@ -479,6 +502,14 @@
   <div class="wrap foot-bottom"><span>© 2026 GB Perícias Trabalhistas</span><span>Desenvolvido por <a href="https://jopes.com.br" target="_blank" rel="noopener">jopes.com.br</a></span></div>
 </footer>
 
+<dialog class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" type="button" aria-label="Fechar">×</button>
+    <img src="" alt="">
+    <p></p>
+  </div>
+</dialog>
+
 
 <script>
   // Número do WhatsApp: só números, com 55 + DDD. Troque aqui se precisar.
@@ -486,6 +517,18 @@
   var MSG = "Olá, Gabriela! Vim pelo site da GB Perícias e gostaria de um orçamento de cálculo trabalhista.";
   var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MSG);
   document.querySelectorAll(".js-wa").forEach(function(a){ a.href = url; });
+
+  var lb = document.getElementById("lightbox");
+  document.querySelectorAll(".cred[data-full]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var img = lb.querySelector("img");
+      img.src = b.dataset.full; img.alt = b.dataset.title;
+      lb.querySelector("p").textContent = b.dataset.title;
+      lb.showModal();
+    });
+  });
+  lb.querySelector(".lb-close").addEventListener("click", function(){ lb.close(); });
+  lb.addEventListener("click", function(e){ if(e.target === lb) lb.close(); });
 
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
